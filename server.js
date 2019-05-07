@@ -1,14 +1,11 @@
 const express = require('express')
+const { join } = require('path')
 const app = express()
 
-app.use(express.urlencoded({
-    
-}))
+app.use(express.static(join(__dirname, '/public')))
+app.use(express.urlencoded({ extended: true }))
+app.use(express.json())
 
+require('./routes')(app)
 
-const { createServer } = require('http')
-
-createServer((req, res) => {
-    res.end('<h1>Hello World</h1>')
-}) .listen(3000)
-console.log('Success')
+require('./config').connect(_ => app.listen(3000))
