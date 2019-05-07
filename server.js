@@ -1,3 +1,11 @@
+const express = require('express')
+const app = express()
+
+app.use(express.urlencoded({
+    
+}))
+
+
 const { createServer } = require('http')
 
 createServer((req, res) => {
